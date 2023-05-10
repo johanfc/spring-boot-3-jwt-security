@@ -16,5 +16,7 @@ public class RegisterRequest {
   private String lastname;
   private String email;
   private String password;
+  private String clientId;
+  private String clientSecret;
   private Role role;
 }

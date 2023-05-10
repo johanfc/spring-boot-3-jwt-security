@@ -15,7 +15,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
@@ -33,6 +32,9 @@ public class User implements UserDetails {
   private String lastname;
   private String email;
   private String password;
+  private Boolean isAppClient;
+  private String clientId;
+  private String clientSecret;
 
   @Enumerated(EnumType.STRING)
   private Role role;
@@ -47,12 +49,12 @@ public class User implements UserDetails {
 
   @Override
   public String getPassword() {
-    return password;
+    return clientSecret;
   }
 
   @Override
   public String getUsername() {
-    return email;
+    return clientId;
   }
 
   @Override

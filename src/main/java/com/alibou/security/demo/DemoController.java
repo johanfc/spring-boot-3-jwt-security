@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/demo-controller")
+@RequestMapping("/api/v1/secure-access")
 @Hidden
 public class DemoController {
 
-  @GetMapping
+  @GetMapping("/test")
   public ResponseEntity<String> sayHello() {
     return ResponseEntity.ok("Hello from secured endpoint");
   }
 
+  @GetMapping("/validate-token")
+  public ResponseEntity<String> isTokenOk() {
+    return ResponseEntity.ok("Your token is Ok");
+  }
 }

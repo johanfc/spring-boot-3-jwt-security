@@ -37,6 +37,8 @@ public class AuthenticationService {
         .lastname(request.getLastname())
         .email(request.getEmail())
         .password(passwordEncoder.encode(request.getPassword()))
+        .clientId(request.getClientId())
+        .clientSecret(passwordEncoder.encode(request.getClientSecret()))
         .role(request.getRole())
         .build();
     var savedUser = repository.save(user);
@@ -52,8 +54,8 @@ public class AuthenticationService {
   public AuthenticationResponse authenticate(AuthenticationRequest request) {
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
-            request.getEmail(),
-            request.getPassword()
+            request.getClientId(),
+            request.getClientSecret()
         )
     );
     var user = repository.findByEmail(request.getEmail())
@@ -117,4 +119,5 @@ public class AuthenticationService {
       }
     }
   }
+
 }
